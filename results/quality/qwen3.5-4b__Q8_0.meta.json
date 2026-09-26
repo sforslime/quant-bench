@@ -1,0 +1,14 @@
+{
+  "model": "qwen3.5-4b",
+  "quant": "Q8_0",
+  "file": "Qwen_Qwen3.5-4B-Q8_0.gguf",
+  "file_gb": 4.622,
+  "n_items": 1000,
+  "wall_seconds": 655.0,
+  "ctx_total": 16384,
+  "kv_mib": 512.0,
+  "compute_mib": 193.96,
+  "gpu_model_mib": 4275.31,
+  "cpu_mapped_mib": 644.14,
+  "gpu_total_mib": 4981.27
+}

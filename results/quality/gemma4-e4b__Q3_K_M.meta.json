@@ -1,0 +1,14 @@
+{
+  "model": "gemma4-e4b",
+  "quant": "Q3_K_M",
+  "file": "google_gemma-4-E4B-it-Q3_K_M.gguf",
+  "file_gb": 4.85,
+  "n_items": 1000,
+  "wall_seconds": 663.3,
+  "ctx_total": 16384,
+  "kv_mib": 416.0,
+  "compute_mib": 194.33,
+  "gpu_model_mib": 4610.61,
+  "cpu_mapped_mib": 2730.0,
+  "gpu_total_mib": 5220.94
+}
