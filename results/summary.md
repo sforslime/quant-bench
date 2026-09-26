@@ -53,16 +53,16 @@ Resamples the item IDs 2000 times, using the same items for the quant and Q8_0. 
 
 | model | task | lang | Q8_0 | Q6_K | Q4_K_M | Q3_K_M | Q2_K |
 |---|---|---|---|---|---|---|---|
-| gemma4-e4b | belebele | eng | 100% (100 to 100) | 100% (98 to 102) | 98% (94 to 101) | 88% (81 to 94) | -7% (-15 to 1) |
-| gemma4-e4b | belebele | yor | 100% (100 to 100) | 88% (67 to 109) | 73% (41 to 104) | 39% (0 to 86) | -21% (-65 to 15) |
-| gemma4-e4b | sentiment | eng | 100% (100 to 100) | 97% (92 to 100) | 100% (92 to 109) | 98% (84 to 114) | 9% (-13 to 30) |
-| gemma4-e4b | sentiment | pcm | 100% (100 to 100) | 95% (87 to 102) | 81% (64 to 99) | 71% (50 to 94) | -10% (-30 to 14) |
+| gemma4-e4b | belebele | eng | 100% (100 to 100) | 100% (98 to 102) | 98% (94 to 101) | 88% (81 to 94) | -7% (-15 to +1) |
+| gemma4-e4b | belebele | yor | 100% (100 to 100) | 88% (67 to 109) | 73% (41 to 104) | 39% (0 to 86) | -21% (-65 to +15) |
+| gemma4-e4b | sentiment | eng | 100% (100 to 100) | 97% (92 to 100) | 100% (92 to 109) | 98% (84 to 114) | 9% (-13 to +30) |
+| gemma4-e4b | sentiment | pcm | 100% (100 to 100) | 95% (87 to 102) | 81% (64 to 99) | 71% (50 to 94) | -10% (-30 to +14) |
 | gemma4-e4b | sentiment | yor | 100% (100 to 100) | 100% (90 to 110) | 122% (100 to 153) | 117% (80 to 181) | 37% (4 to 84) |
 | qwen3.5-4b | belebele | eng | 100% (100 to 100) | 101% (100 to 102) | 98% (93 to 102) | 102% (96 to 107) | 41% (30 to 50) |
-| qwen3.5-4b | belebele | yor | 100% (100 to 100) | 100% (83 to 121) | 95% (71 to 125) | 62% (31 to 95) | 15% (-17 to 50) |
+| qwen3.5-4b | belebele | yor | 100% (100 to 100) | 100% (83 to 121) | 95% (71 to 125) | 62% (31 to 95) | 15% (-17 to +50) |
 | qwen3.5-4b | sentiment | eng | 100% (100 to 100) | 102% (100 to 105) | 103% (92 to 116) | 100% (89 to 113) | 35% (16 to 58) |
-| qwen3.5-4b | sentiment | pcm | 100% (100 to 100) | 98% (89 to 108) | 106% (85 to 136) | 96% (71 to 128) | 11% (-15 to 40) |
-| qwen3.5-4b | sentiment | yor | 100% (100 to 100) | 98% (86 to 111) | 74% (54 to 95) | 50% (24 to 83) | 11% (-17 to 38) |
+| qwen3.5-4b | sentiment | pcm | 100% (100 to 100) | 98% (89 to 108) | 106% (85 to 136) | 96% (71 to 128) | 11% (-15 to +40) |
+| qwen3.5-4b | sentiment | yor | 100% (100 to 100) | 98% (86 to 111) | 74% (54 to 95) | 50% (24 to 83) | 11% (-17 to +38) |
 
 ## Yoruba minus English skill kept (Belebele), paired-bootstrap 95% CI
 

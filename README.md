@@ -41,15 +41,17 @@ Most quantization benchmarks only measure English. This one asks:
   questions in Yoruba.
 - **Yoruba costs more than twice as many tokens** as English for the same text,
   so it is slower to process and fills the model's context faster.
-- **Don't go below Q4_K_M on a Mac.** Q3_K_M is no faster and loses quality.
-  Q2_K collapses into guessing.
+- **Don't go below Q4_K_M on a Mac.** Q3_K_M is no faster and starts losing
+  quality, especially in Yoruba. Q2_K badly damages both models; Gemma
+  collapses into guessing.
 
 ## Results
 
 ### Reading comprehension: English vs. Yoruba
 
 **In both models, Yoruba loses roughly half its skill at Q3_K_M, while English
-loses a little (Gemma) or nothing (Qwen).** Both languages collapse at Q2_K.
+loses a little (Gemma) or nothing (Qwen).** Q2_K badly damages both models,
+and Gemma collapses into guessing.
 With 200 questions per language, the difference is suggestive rather than
 proven ([Methods](#statistics)).
 
@@ -61,10 +63,10 @@ starts close to chance, so a few questions swing the ratio a lot. Values below
 
 | Skill kept (95% CI) | Gemma, English | Gemma, Yoruba | Qwen, English | Qwen, Yoruba |
 |---|---|---|---|---|
-| Q6_K | 100% (98–102) | 88% (67–109) | 101% (100–102) | 100% (83–121) |
-| Q4_K_M | 98% (94–101) | 73% (41–104) | 98% (93–102) | 95% (71–125) |
-| Q3_K_M | 88% (81–94) | 39% (0–86) | 102% (96–107) | 62% (31–95) |
-| Q2_K | −7% (−15–1) | −21% (−65–15) | 41% (30–50) | 15% (−17–50) |
+| Q6_K | 100% (98 to 102) | 88% (67 to 109) | 101% (100 to 102) | 100% (83 to 121) |
+| Q4_K_M | 98% (94 to 101) | 73% (41 to 104) | 98% (93 to 102) | 95% (71 to 125) |
+| Q3_K_M | 88% (81 to 94) | 39% (0 to 86) | 102% (96 to 107) | 62% (31 to 95) |
+| Q2_K | −7% (−15 to +1) | −21% (−65 to +15) | 41% (30 to 50) | 15% (−17 to +50) |
 
 **How much more did Yoruba lose than English?** This is Yoruba's skill kept
 minus English's, in percentage points (negative = Yoruba lost more). It is the
@@ -263,9 +265,11 @@ As a plausibility check, the [Belebele paper](https://arxiv.org/abs/2308.16884)
 | GPT-3.5-turbo | zero-shot | 87.7% | 29.1% |
 | Llama 2 70B | five-shot | 90.9% | 28.3% |
 
-Our Q8_0 scores (English 91.5–93.5%, Yoruba 41.5–44.5%) are consistent with
-newer small models slightly exceeding those 2023 results. The setups differ, so
-this is not a like-for-like comparison.
+Our Q8_0 scores are somewhat above those on English (91.5–93.5%, up to about
+6 points higher) and well above on Yoruba (41.5–44.5%, 12–16 points higher).
+Newer models doing better is plausible, but the setups differ (prompt format,
+shots, answer extraction), so this is not a like-for-like comparison, and the
+Yoruba gain in particular isn't explained by this benchmark alone.
 
 ### Speed
 
@@ -333,7 +337,7 @@ sh scripts/run_all.sh           # evals, quantize, quality, speed, token tax, re
 - **English-only instructions.** The instructions are in English, so the Yoruba
   tasks are partly cross-lingual. Some of the English–Yoruba gap may come from
   the setup rather than from Yoruba reading ability.
-- **Sample size.** 200 items per task-language set. Only the Q2_K collapses and
+- **Sample size.** 200 items per task-language set. Only the Q2_K drops and
   Gemma's Q3_K_M English drop survive correction for multiple tests
   ([Statistics](#statistics)).
 - **Reference.** Q8_0 is the reference, not BF16.

@@ -301,6 +301,11 @@ def chart_speed(s):
     plt.close(fig)
 
 
+def ci_range(lo, hi):
+    """'a to b', with a '+' on the upper bound when the interval crosses zero."""
+    return f"{lo:.0f} to {hi:+.0f}" if lo < 0 < hi else f"{lo:.0f} to {hi:.0f}"
+
+
 def fmt_pct(x):
     return "–" if pd.isna(x) else f"{100 * x:.1f}%"
 
@@ -342,7 +347,7 @@ def write_summary(df, t, sk, gaps, metas, s):
               "(Yoruba Belebele starts less than 20 points above it).", "",
               "| model | task | lang | " + " | ".join(QUANTS) + " |", "|---|---|---|" + "---|" * len(QUANTS)]
     for (model, task, lang), g in sk.groupby(["model", "task", "lang"]):
-        cells = [f"{100 * r.skill:.0f}% ({100 * r.skill_lo:.0f} to {100 * r.skill_hi:.0f})" for r in g.sort_values("qi").itertuples()]
+        cells = [f"{100 * r.skill:.0f}% ({ci_range(100 * r.skill_lo, 100 * r.skill_hi)})" for r in g.sort_values("qi").itertuples()]
         lines.append(f"| {model} | {task} | {lang} | " + " | ".join(cells) + " |")
     lines += ["", "## Yoruba minus English skill kept (Belebele), paired-bootstrap 95% CI", "",
               "The same resampled question numbers are used for both languages. Negative = Yoruba lost a larger share of its skill. "
