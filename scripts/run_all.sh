@@ -18,5 +18,6 @@ $PY scripts/quantize.py
 $PY scripts/bench_quality.py --only gemma4-e4b
 
 $PY scripts/bench_speed.py
+$PY scripts/token_tax.py
 $PY scripts/report.py
 echo "PIPELINE COMPLETE"

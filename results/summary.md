@@ -2,50 +2,82 @@
 
 ## Change vs. Q8_0 on the same items (paired)
 
-Negative = worse than Q8_0. *lost/gained*: items Q8_0 got right and this quant got wrong, and vice versa. p: exact McNemar test.
+Negative = worse than Q8_0. *lost/gained*: items Q8_0 got right and this quant got wrong, and vice versa. p: exact McNemar test (uses only the items where the two quants disagree). Holm p: adjusted for all 40 tests in this table. ▼ = significant after Holm correction; ▽ = p < 0.05 before correction only.
 
-| model | quant | task | lang | Δ accuracy | paired 95% CI | lost / gained | p |
+| model | quant | task | lang | Δ accuracy | paired 95% CI | lost / gained | p | Holm p |
+|---|---|---|---|---|---|---|---|---|
+| gemma4-e4b | Q6_K | belebele | eng | +0.0 | -1.5 to +1.5 | 1 / 1 | 1.0000 | 1.0000 |
+| gemma4-e4b | Q4_K_M | belebele | eng | -1.5 | -4.0 to +1.0 | 5 / 2 | 0.4531 | 1.0000 |
+| gemma4-e4b | Q3_K_M | belebele | eng | -8.5 ▼ | -13.0 to -4.0 | 21 / 4 | 0.0009 | 0.0282 |
+| gemma4-e4b | Q2_K | belebele | eng | -73.5 ▼ | -80.0 to -66.5 | 153 / 6 | 0.0000 | 0.0000 |
+| gemma4-e4b | Q6_K | belebele | yor | -2.0 | -5.5 to +1.0 | 8 / 4 | 0.3877 | 1.0000 |
+| gemma4-e4b | Q4_K_M | belebele | yor | -4.5 | -9.5 to +0.5 | 18 / 9 | 0.1221 | 1.0000 |
+| gemma4-e4b | Q3_K_M | belebele | yor | -10.0 ▽ | -18.0 to -2.0 | 46 / 26 | 0.0245 | 0.6604 |
+| gemma4-e4b | Q2_K | belebele | yor | -20.0 ▼ | -29.0 to -11.5 | 65 / 25 | 0.0000 | 0.0010 |
+| gemma4-e4b | Q6_K | sentiment | eng | -1.0 | -2.5 to +0.0 | 2 / 0 | 0.5000 | 1.0000 |
+| gemma4-e4b | Q4_K_M | sentiment | eng | +0.0 | -3.0 to +3.0 | 4 / 4 | 1.0000 | 1.0000 |
+| gemma4-e4b | Q3_K_M | sentiment | eng | -0.5 | -5.0 to +4.0 | 12 / 11 | 1.0000 | 1.0000 |
+| gemma4-e4b | Q2_K | sentiment | eng | -28.5 ▼ | -37.5 to -19.5 | 76 / 19 | 0.0000 | 0.0000 |
+| gemma4-e4b | Q6_K | sentiment | pcm | -1.5 | -4.0 to +0.5 | 4 / 1 | 0.3750 | 1.0000 |
+| gemma4-e4b | Q4_K_M | sentiment | pcm | -5.5 | -11.0 to +0.0 | 21 / 10 | 0.0708 | 1.0000 |
+| gemma4-e4b | Q3_K_M | sentiment | pcm | -8.5 ▽ | -15.0 to -2.0 | 33 / 16 | 0.0213 | 0.5962 |
+| gemma4-e4b | Q2_K | sentiment | pcm | -32.0 ▼ | -42.0 to -22.5 | 95 / 31 | 0.0000 | 0.0000 |
+| gemma4-e4b | Q6_K | sentiment | yor | +0.0 | -2.0 to +2.0 | 2 / 2 | 1.0000 | 1.0000 |
+| gemma4-e4b | Q4_K_M | sentiment | yor | +4.5 | +0.5 to +9.0 | 5 / 14 | 0.0636 | 1.0000 |
+| gemma4-e4b | Q3_K_M | sentiment | yor | +3.5 | -5.0 to +12.5 | 39 / 46 | 0.5154 | 1.0000 |
+| gemma4-e4b | Q2_K | sentiment | yor | -13.0 ▽ | -23.5 to -3.0 | 71 / 45 | 0.0199 | 0.5765 |
+| qwen3.5-4b | Q6_K | belebele | eng | +0.5 | +0.0 to +1.5 | 0 / 1 | 1.0000 | 1.0000 |
+| qwen3.5-4b | Q4_K_M | belebele | eng | -1.5 | -4.5 to +1.5 | 6 / 3 | 0.5078 | 1.0000 |
+| qwen3.5-4b | Q3_K_M | belebele | eng | +1.0 | -2.5 to +4.5 | 5 / 7 | 0.7744 | 1.0000 |
+| qwen3.5-4b | Q2_K | belebele | eng | -39.5 ▼ | -47.0 to -32.0 | 84 / 5 | 0.0000 | 0.0000 |
+| qwen3.5-4b | Q6_K | belebele | yor | +0.0 | -3.5 to +3.5 | 6 / 6 | 1.0000 | 1.0000 |
+| qwen3.5-4b | Q4_K_M | belebele | yor | -1.0 | -6.0 to +4.5 | 15 / 13 | 0.8506 | 1.0000 |
+| qwen3.5-4b | Q3_K_M | belebele | yor | -7.5 ▽ | -14.5 to -1.0 | 31 / 16 | 0.0400 | 1.0000 |
+| qwen3.5-4b | Q2_K | belebele | yor | -16.5 ▼ | -26.0 to -7.0 | 61 / 28 | 0.0006 | 0.0195 |
+| qwen3.5-4b | Q6_K | sentiment | eng | +0.5 | +0.0 to +1.5 | 0 / 1 | 1.0000 | 1.0000 |
+| qwen3.5-4b | Q4_K_M | sentiment | eng | +1.0 | -3.0 to +4.5 | 7 / 9 | 0.8036 | 1.0000 |
+| qwen3.5-4b | Q3_K_M | sentiment | eng | +0.0 | -4.0 to +3.5 | 8 / 8 | 1.0000 | 1.0000 |
+| qwen3.5-4b | Q2_K | sentiment | eng | -21.5 ▼ | -30.5 to -13.0 | 68 / 25 | 0.0000 | 0.0003 |
+| qwen3.5-4b | Q6_K | sentiment | pcm | -0.5 | -2.5 to +1.5 | 3 / 2 | 1.0000 | 1.0000 |
+| qwen3.5-4b | Q4_K_M | sentiment | pcm | +1.5 | -4.0 to +7.0 | 16 / 19 | 0.7359 | 1.0000 |
+| qwen3.5-4b | Q3_K_M | sentiment | pcm | -1.0 | -8.0 to +6.0 | 24 / 22 | 0.8830 | 1.0000 |
+| qwen3.5-4b | Q2_K | sentiment | pcm | -21.5 ▼ | -31.0 to -12.0 | 71 / 28 | 0.0000 | 0.0006 |
+| qwen3.5-4b | Q6_K | sentiment | yor | -0.5 | -3.5 to +2.5 | 5 / 4 | 1.0000 | 1.0000 |
+| qwen3.5-4b | Q4_K_M | sentiment | yor | -6.5 ▽ | -12.0 to -1.0 | 24 / 11 | 0.0410 | 1.0000 |
+| qwen3.5-4b | Q3_K_M | sentiment | yor | -12.5 ▽ | -21.0 to -4.0 | 52 / 27 | 0.0066 | 0.1966 |
+| qwen3.5-4b | Q2_K | sentiment | yor | -22.5 ▼ | -31.5 to -12.5 | 75 / 30 | 0.0000 | 0.0005 |
+
+## Skill kept (share of above-chance skill at Q8_0 that survives), paired-bootstrap 95% CI
+
+Resamples the item IDs 2000 times, using the same items for the quant and Q8_0. Negative = below chance. Intervals are wide when Q8_0 starts close to chance (Yoruba Belebele starts less than 20 points above it).
+
+| model | task | lang | Q8_0 | Q6_K | Q4_K_M | Q3_K_M | Q2_K |
 |---|---|---|---|---|---|---|---|
-| gemma4-e4b | Q6_K | belebele | eng | +0.0 | -1.5 to +1.5 | 1 / 1 | 1.000 |
-| gemma4-e4b | Q4_K_M | belebele | eng | -1.5 | -4.0 to +1.0 | 5 / 2 | 0.453 |
-| gemma4-e4b | Q3_K_M | belebele | eng | -8.5 * | -13.0 to -4.0 | 21 / 4 | 0.001 |
-| gemma4-e4b | Q2_K | belebele | eng | -73.5 * | -80.0 to -66.5 | 153 / 6 | 0.000 |
-| gemma4-e4b | Q6_K | belebele | yor | -2.0 | -5.5 to +1.0 | 8 / 4 | 0.388 |
-| gemma4-e4b | Q4_K_M | belebele | yor | -4.5 | -9.5 to +0.5 | 18 / 9 | 0.122 |
-| gemma4-e4b | Q3_K_M | belebele | yor | -10.0 * | -18.0 to -2.0 | 46 / 26 | 0.024 |
-| gemma4-e4b | Q2_K | belebele | yor | -20.0 * | -29.0 to -11.5 | 65 / 25 | 0.000 |
-| gemma4-e4b | Q6_K | sentiment | eng | -1.0 | -2.5 to +0.0 | 2 / 0 | 0.500 |
-| gemma4-e4b | Q4_K_M | sentiment | eng | +0.0 | -3.0 to +3.0 | 4 / 4 | 1.000 |
-| gemma4-e4b | Q3_K_M | sentiment | eng | -0.5 | -5.0 to +4.0 | 12 / 11 | 1.000 |
-| gemma4-e4b | Q2_K | sentiment | eng | -28.5 * | -37.5 to -19.5 | 76 / 19 | 0.000 |
-| gemma4-e4b | Q6_K | sentiment | pcm | -1.5 | -4.0 to +0.5 | 4 / 1 | 0.375 |
-| gemma4-e4b | Q4_K_M | sentiment | pcm | -5.5 | -11.0 to +0.0 | 21 / 10 | 0.071 |
-| gemma4-e4b | Q3_K_M | sentiment | pcm | -8.5 * | -15.0 to -2.0 | 33 / 16 | 0.021 |
-| gemma4-e4b | Q2_K | sentiment | pcm | -32.0 * | -42.0 to -22.5 | 95 / 31 | 0.000 |
-| gemma4-e4b | Q6_K | sentiment | yor | +0.0 | -2.0 to +2.0 | 2 / 2 | 1.000 |
-| gemma4-e4b | Q4_K_M | sentiment | yor | +4.5 | +0.5 to +9.0 | 5 / 14 | 0.064 |
-| gemma4-e4b | Q3_K_M | sentiment | yor | +3.5 | -5.0 to +12.5 | 39 / 46 | 0.515 |
-| gemma4-e4b | Q2_K | sentiment | yor | -13.0 * | -23.5 to -3.0 | 71 / 45 | 0.020 |
-| qwen3.5-4b | Q6_K | belebele | eng | +0.5 | +0.0 to +1.5 | 0 / 1 | 1.000 |
-| qwen3.5-4b | Q4_K_M | belebele | eng | -1.5 | -4.5 to +1.5 | 6 / 3 | 0.508 |
-| qwen3.5-4b | Q3_K_M | belebele | eng | +1.0 | -2.5 to +4.5 | 5 / 7 | 0.774 |
-| qwen3.5-4b | Q2_K | belebele | eng | -39.5 * | -47.0 to -32.0 | 84 / 5 | 0.000 |
-| qwen3.5-4b | Q6_K | belebele | yor | +0.0 | -3.5 to +3.5 | 6 / 6 | 1.000 |
-| qwen3.5-4b | Q4_K_M | belebele | yor | -1.0 | -6.0 to +4.5 | 15 / 13 | 0.851 |
-| qwen3.5-4b | Q3_K_M | belebele | yor | -7.5 * | -14.5 to -1.0 | 31 / 16 | 0.040 |
-| qwen3.5-4b | Q2_K | belebele | yor | -16.5 * | -26.0 to -7.0 | 61 / 28 | 0.001 |
-| qwen3.5-4b | Q6_K | sentiment | eng | +0.5 | +0.0 to +1.5 | 0 / 1 | 1.000 |
-| qwen3.5-4b | Q4_K_M | sentiment | eng | +1.0 | -3.0 to +4.5 | 7 / 9 | 0.804 |
-| qwen3.5-4b | Q3_K_M | sentiment | eng | +0.0 | -4.0 to +3.5 | 8 / 8 | 1.000 |
-| qwen3.5-4b | Q2_K | sentiment | eng | -21.5 * | -30.5 to -13.0 | 68 / 25 | 0.000 |
-| qwen3.5-4b | Q6_K | sentiment | pcm | -0.5 | -2.5 to +1.5 | 3 / 2 | 1.000 |
-| qwen3.5-4b | Q4_K_M | sentiment | pcm | +1.5 | -4.0 to +7.0 | 16 / 19 | 0.736 |
-| qwen3.5-4b | Q3_K_M | sentiment | pcm | -1.0 | -8.0 to +6.0 | 24 / 22 | 0.883 |
-| qwen3.5-4b | Q2_K | sentiment | pcm | -21.5 * | -31.0 to -12.0 | 71 / 28 | 0.000 |
-| qwen3.5-4b | Q6_K | sentiment | yor | -0.5 | -3.5 to +2.5 | 5 / 4 | 1.000 |
-| qwen3.5-4b | Q4_K_M | sentiment | yor | -6.5 * | -12.0 to -1.0 | 24 / 11 | 0.041 |
-| qwen3.5-4b | Q3_K_M | sentiment | yor | -12.5 * | -21.0 to -4.0 | 52 / 27 | 0.007 |
-| qwen3.5-4b | Q2_K | sentiment | yor | -22.5 * | -31.5 to -12.5 | 75 / 30 | 0.000 |
+| gemma4-e4b | belebele | eng | 100% (100 to 100) | 100% (98 to 102) | 98% (94 to 101) | 88% (81 to 94) | -7% (-15 to 1) |
+| gemma4-e4b | belebele | yor | 100% (100 to 100) | 88% (67 to 109) | 73% (41 to 104) | 39% (0 to 86) | -21% (-65 to 15) |
+| gemma4-e4b | sentiment | eng | 100% (100 to 100) | 97% (92 to 100) | 100% (92 to 109) | 98% (84 to 114) | 9% (-13 to 30) |
+| gemma4-e4b | sentiment | pcm | 100% (100 to 100) | 95% (87 to 102) | 81% (64 to 99) | 71% (50 to 94) | -10% (-30 to 14) |
+| gemma4-e4b | sentiment | yor | 100% (100 to 100) | 100% (90 to 110) | 122% (100 to 153) | 117% (80 to 181) | 37% (4 to 84) |
+| qwen3.5-4b | belebele | eng | 100% (100 to 100) | 101% (100 to 102) | 98% (93 to 102) | 102% (96 to 107) | 41% (30 to 50) |
+| qwen3.5-4b | belebele | yor | 100% (100 to 100) | 100% (83 to 121) | 95% (71 to 125) | 62% (31 to 95) | 15% (-17 to 50) |
+| qwen3.5-4b | sentiment | eng | 100% (100 to 100) | 102% (100 to 105) | 103% (92 to 116) | 100% (89 to 113) | 35% (16 to 58) |
+| qwen3.5-4b | sentiment | pcm | 100% (100 to 100) | 98% (89 to 108) | 106% (85 to 136) | 96% (71 to 128) | 11% (-15 to 40) |
+| qwen3.5-4b | sentiment | yor | 100% (100 to 100) | 98% (86 to 111) | 74% (54 to 95) | 50% (24 to 83) | 11% (-17 to 38) |
+
+## Yoruba minus English skill kept (Belebele), paired-bootstrap 95% CI
+
+The same resampled question numbers are used for both languages. Negative = Yoruba lost a larger share of its skill. *P(Yoruba worse)* is the share of resamples where the gap is below 0.
+
+| model | quant | gap | 95% CI | P(Yoruba worse) |
+|---|---|---|---|---|
+| gemma4-e4b | Q6_K | -12 pts | -34 to +9 | 0.85 |
+| gemma4-e4b | Q4_K_M | -25 pts | -57 to +6 | 0.94 |
+| gemma4-e4b | Q3_K_M | -48 pts | -86 to -1 | 0.98 |
+| gemma4-e4b | Q2_K | -14 pts | -57 to +24 | 0.78 |
+| qwen3.5-4b | Q6_K | -1 pts | -17 to +20 | 0.51 |
+| qwen3.5-4b | Q4_K_M | -3 pts | -28 to +27 | 0.59 |
+| qwen3.5-4b | Q3_K_M | -40 pts | -70 to -8 | 0.99 |
+| qwen3.5-4b | Q2_K | -25 pts | -58 to +10 | 0.92 |
 
 ## Accuracy by config (95% CI)
 
@@ -102,20 +134,14 @@ Negative = worse than Q8_0. *lost/gained*: items Q8_0 got right and this quant g
 | qwen3.5-4b | Q3_K_M | sentiment | yor | 46.0% | 38.5%–53.0% | 78.6% | 0.425 |
 | qwen3.5-4b | Q2_K | sentiment | yor | 36.0% | 29.0%–42.5% | 61.5% | 0.305 |
 
-## Token tax: average prompt length for the same content
+## Token tax (Belebele parallel passages, each model's own tokenizer)
 
-| model | task | lang | avg prompt tokens | × English |
-|---|---|---|---|---|
-| gemma4-e4b | belebele | eng | 190 | 1.00× |
-| gemma4-e4b | belebele | yor | 357 | 1.88× |
-| gemma4-e4b | sentiment | eng | 66 | 1.00× |
-| gemma4-e4b | sentiment | pcm | 63 | 0.96× |
-| gemma4-e4b | sentiment | yor | 86 | 1.31× |
-| qwen3.5-4b | belebele | eng | 195 | 1.00× |
-| qwen3.5-4b | belebele | yor | 394 | 2.02× |
-| qwen3.5-4b | sentiment | eng | 70 | 1.00× |
-| qwen3.5-4b | sentiment | pcm | 67 | 0.96× |
-| qwen3.5-4b | sentiment | yor | 95 | 1.36× |
+Passage-only: each unique passage pair counted once, special tokens excluded. Full prompt: the whole request as sent, including the English instructions and chat template, averaged over the 200 items.
+
+| model | passages | English passage tokens | Yoruba passage tokens | Yoruba ÷ English (passages) | Yoruba ÷ English (full prompt) |
+|---|---|---|---|---|---|
+| gemma4-e4b | 182 | 97.4 | 229.4 | 2.35× | 1.88× |
+| qwen3.5-4b | 182 | 98.7 | 253.9 | 2.57× | 2.02× |
 
 ## Memory
 

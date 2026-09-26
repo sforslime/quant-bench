@@ -18,10 +18,21 @@ from config import DATA_DIR, N_ITEMS, SEED
 LETTERS = ["A", "B", "C", "D"]
 SENTIMENTS = ["positive", "negative", "neutral"]
 
+# Pinned dataset versions (Hugging Face commit SHAs), so a rebuild gives a byte-identical file.
+REVISIONS = {
+    "facebook/belebele": "7899cdfa4e1e0d733fd77c848e2c273cb1d32be2",
+    "masakhane/afrisenti": "eb42667d2e83d0081864767b47681fbaf00144fb",
+    "cardiffnlp/tweet_eval": "b3a375baf0f409c77e6bc7aa35102b7b3534f8be",
+}
+
+
+def load(name, config):
+    return load_dataset(name, config, revision=REVISIONS[name])
+
 
 def belebele(langs=("eng_Latn", "yor_Latn")):
     """Reading comprehension. The same question indices for every language (the rows are parallel translations)."""
-    sets = {lang: load_dataset("facebook/belebele", lang)["test"] for lang in langs}
+    sets = {lang: load("facebook/belebele", lang)["test"] for lang in langs}
     n = len(sets[langs[0]])
     idx = sorted(random.Random(SEED).sample(range(n), N_ITEMS))
     out = []
@@ -72,13 +83,13 @@ def sentiment():
 
     # English: tweet_eval labels are 0=negative, 1=neutral, 2=positive.
     eng_names = {0: "negative", 1: "neutral", 2: "positive"}
-    eng = [{"text": r["text"], "label": eng_names[r["label"]]} for r in load_dataset("cardiffnlp/tweet_eval", "sentiment")["test"]]
+    eng = [{"text": r["text"], "label": eng_names[r["label"]]} for r in load("cardiffnlp/tweet_eval", "sentiment")["test"]]
     for k, r in enumerate(balanced_sample(eng, lambda r: r["label"], rng)):
         out.append({"id": f"senti-eng-{k}", "task": "sentiment", "lang": "eng",
                     "prompt": sentiment_prompt(r["text"]), "choices": SENTIMENTS, "answer": r["label"]})
 
     for lang in ["pcm", "yor"]:
-        rows = [{"text": r["tweet"], "label": r["label"]} for r in load_dataset("masakhane/afrisenti", lang)["test"]]
+        rows = [{"text": r["tweet"], "label": r["label"]} for r in load("masakhane/afrisenti", lang)["test"]]
         for k, r in enumerate(balanced_sample(rows, lambda r: r["label"], rng)):
             out.append({"id": f"senti-{lang}-{k}", "task": "sentiment", "lang": lang,
                         "prompt": sentiment_prompt(r["text"]), "choices": SENTIMENTS, "answer": r["label"]})

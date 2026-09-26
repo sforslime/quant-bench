@@ -10,7 +10,10 @@
   "n":200,
   "macro_f1":null,
   "retention":1.0,
-  "skill_retention":1.0
+  "skill":1.0,
+  "skill_lo":1.0,
+  "skill_hi":1.0,
+  "boot_dropped":0
  },
  {
   "model":"gemma4-e4b",
@@ -23,7 +26,10 @@
   "n":200,
   "macro_f1":null,
   "retention":1.0,
-  "skill_retention":1.0
+  "skill":1.0,
+  "skill_lo":0.9784172662,
+  "skill_hi":1.0220588235,
+  "boot_dropped":0
  },
  {
   "model":"gemma4-e4b",
@@ -36,7 +42,10 @@
   "n":200,
   "macro_f1":null,
   "retention":0.9839572193,
-  "skill_retention":0.9781021898
+  "skill":0.9781021898,
+  "skill_lo":0.9407407407,
+  "skill_hi":1.0145985401,
+  "boot_dropped":0
  },
  {
   "model":"gemma4-e4b",
@@ -49,7 +58,10 @@
   "n":200,
   "macro_f1":null,
   "retention":0.9090909091,
-  "skill_retention":0.8759124088
+  "skill":0.8759124088,
+  "skill_lo":0.8088235294,
+  "skill_hi":0.9411764706,
+  "boot_dropped":0
  },
  {
   "model":"gemma4-e4b",
@@ -62,7 +74,10 @@
   "n":200,
   "macro_f1":null,
   "retention":0.2139037433,
-  "skill_retention":-0.0729927007
+  "skill":-0.0729927007,
+  "skill_lo":-0.1510791367,
+  "skill_hi":0.0143937405,
+  "boot_dropped":0
  },
  {
   "model":"gemma4-e4b",
@@ -75,7 +90,10 @@
   "n":200,
   "macro_f1":null,
   "retention":1.0,
-  "skill_retention":1.0
+  "skill":1.0,
+  "skill_lo":1.0,
+  "skill_hi":1.0,
+  "boot_dropped":0
  },
  {
   "model":"gemma4-e4b",
@@ -88,7 +106,10 @@
   "n":200,
   "macro_f1":null,
   "retention":0.9518072289,
-  "skill_retention":0.8787878788
+  "skill":0.8787878788,
+  "skill_lo":0.6666666667,
+  "skill_hi":1.0909090909,
+  "boot_dropped":0
  },
  {
   "model":"gemma4-e4b",
@@ -101,7 +122,10 @@
   "n":200,
   "macro_f1":null,
   "retention":0.8915662651,
-  "skill_retention":0.7272727273
+  "skill":0.7272727273,
+  "skill_lo":0.4074074074,
+  "skill_hi":1.035782967,
+  "boot_dropped":0
  },
  {
   "model":"gemma4-e4b",
@@ -114,7 +138,10 @@
   "n":200,
   "macro_f1":null,
   "retention":0.7590361446,
-  "skill_retention":0.3939393939
+  "skill":0.3939393939,
+  "skill_lo":0.0,
+  "skill_hi":0.8621081505,
+  "boot_dropped":0
  },
  {
   "model":"gemma4-e4b",
@@ -127,7 +154,10 @@
   "n":200,
   "macro_f1":null,
   "retention":0.5180722892,
-  "skill_retention":-0.2121212121
+  "skill":-0.2121212121,
+  "skill_lo":-0.6538461538,
+  "skill_hi":0.1515151515,
+  "boot_dropped":0
  },
  {
   "model":"gemma4-e4b",
@@ -140,7 +170,10 @@
   "n":200,
   "macro_f1":0.6284080299,
   "retention":1.0,
-  "skill_retention":1.0
+  "skill":1.0,
+  "skill_lo":1.0,
+  "skill_hi":1.0,
+  "boot_dropped":0
  },
  {
   "model":"gemma4-e4b",
@@ -153,7 +186,10 @@
   "n":200,
   "macro_f1":0.6197683752,
   "retention":0.984496124,
-  "skill_retention":0.9679144385
+  "skill":0.9679144385,
+  "skill_lo":0.9170960913,
+  "skill_hi":1.0,
+  "boot_dropped":0
  },
  {
   "model":"gemma4-e4b",
@@ -166,7 +202,10 @@
   "n":200,
   "macro_f1":0.6206059914,
   "retention":1.0,
-  "skill_retention":1.0
+  "skill":1.0,
+  "skill_lo":0.9154729324,
+  "skill_hi":1.0920245399,
+  "boot_dropped":0
  },
  {
   "model":"gemma4-e4b",
@@ -179,7 +218,10 @@
   "n":200,
   "macro_f1":0.5818905501,
   "retention":0.992248062,
-  "skill_retention":0.9839572193
+  "skill":0.9839572193,
+  "skill_lo":0.8441419954,
+  "skill_hi":1.1421670894,
+  "boot_dropped":0
  },
  {
   "model":"gemma4-e4b",
@@ -192,7 +234,10 @@
   "n":200,
   "macro_f1":0.3560340548,
   "retention":0.5581395349,
-  "skill_retention":0.0855614973
+  "skill":0.0855614973,
+  "skill_lo":-0.1347255286,
+  "skill_hi":0.3045880682,
+  "boot_dropped":0
  },
  {
   "model":"gemma4-e4b",
@@ -205,7 +250,10 @@
   "n":200,
   "macro_f1":0.6142677049,
   "retention":1.0,
-  "skill_retention":1.0
+  "skill":1.0,
+  "skill_lo":1.0,
+  "skill_hi":1.0,
+  "boot_dropped":0
  },
  {
   "model":"gemma4-e4b",
@@ -218,7 +266,10 @@
   "n":200,
   "macro_f1":0.6013469333,
   "retention":0.976,
-  "skill_retention":0.9485714286
+  "skill":0.9485714286,
+  "skill_lo":0.8705035971,
+  "skill_hi":1.01875,
+  "boot_dropped":0
  },
  {
   "model":"gemma4-e4b",
@@ -231,7 +282,10 @@
   "n":200,
   "macro_f1":0.558235347,
   "retention":0.912,
-  "skill_retention":0.8114285714
+  "skill":0.8114285714,
+  "skill_lo":0.6399638554,
+  "skill_hi":0.9857317073,
+  "boot_dropped":0
  },
  {
   "model":"gemma4-e4b",
@@ -244,7 +298,10 @@
   "n":200,
   "macro_f1":0.5142765589,
   "retention":0.864,
-  "skill_retention":0.7085714286
+  "skill":0.7085714286,
+  "skill_lo":0.5025906736,
+  "skill_hi":0.9404263783,
+  "boot_dropped":0
  },
  {
   "model":"gemma4-e4b",
@@ -257,7 +314,10 @@
   "n":200,
   "macro_f1":0.3052051803,
   "retention":0.488,
-  "skill_retention":-0.0971428571
+  "skill":-0.0971428571,
+  "skill_lo":-0.3012048193,
+  "skill_hi":0.1428571429,
+  "boot_dropped":0
  },
  {
   "model":"gemma4-e4b",
@@ -270,7 +330,10 @@
   "n":200,
   "macro_f1":0.5276615404,
   "retention":1.0,
-  "skill_retention":1.0
+  "skill":1.0,
+  "skill_lo":1.0,
+  "skill_hi":1.0,
+  "boot_dropped":0
  },
  {
   "model":"gemma4-e4b",
@@ -283,7 +346,10 @@
   "n":200,
   "macro_f1":0.5261776225,
   "retention":1.0,
-  "skill_retention":1.0
+  "skill":1.0,
+  "skill_lo":0.9042553191,
+  "skill_hi":1.1016949153,
+  "boot_dropped":0
  },
  {
   "model":"gemma4-e4b",
@@ -296,7 +362,10 @@
   "n":200,
   "macro_f1":0.5814507124,
   "retention":1.0833333333,
-  "skill_retention":1.2177419355
+  "skill":1.2177419355,
+  "skill_lo":1.0,
+  "skill_hi":1.5294117647,
+  "boot_dropped":0
  },
  {
   "model":"gemma4-e4b",
@@ -309,7 +378,10 @@
   "n":200,
   "macro_f1":0.5565155981,
   "retention":1.0648148148,
-  "skill_retention":1.1693548387
+  "skill":1.1693548387,
+  "skill_lo":0.796924812,
+  "skill_hi":1.8102045455,
+  "boot_dropped":0
  },
  {
   "model":"gemma4-e4b",
@@ -322,7 +394,10 @@
   "n":200,
   "macro_f1":0.3897302396,
   "retention":0.7592592593,
-  "skill_retention":0.3709677419
+  "skill":0.3709677419,
+  "skill_lo":0.0380098225,
+  "skill_hi":0.8393142097,
+  "boot_dropped":0
  },
  {
   "model":"qwen3.5-4b",
@@ -335,7 +410,10 @@
   "n":200,
   "macro_f1":null,
   "retention":1.0,
-  "skill_retention":1.0
+  "skill":1.0,
+  "skill_lo":1.0,
+  "skill_hi":1.0,
+  "boot_dropped":0
  },
  {
   "model":"qwen3.5-4b",
@@ -348,7 +426,10 @@
   "n":200,
   "macro_f1":null,
   "retention":1.0054644809,
-  "skill_retention":1.007518797
+  "skill":1.007518797,
+  "skill_lo":1.0,
+  "skill_hi":1.0234375,
+  "boot_dropped":0
  },
  {
   "model":"qwen3.5-4b",
@@ -361,7 +442,10 @@
   "n":200,
   "macro_f1":null,
   "retention":0.9836065574,
-  "skill_retention":0.977443609
+  "skill":0.977443609,
+  "skill_lo":0.9343065693,
+  "skill_hi":1.0227272727,
+  "boot_dropped":0
  },
  {
   "model":"qwen3.5-4b",
@@ -374,7 +458,10 @@
   "n":200,
   "macro_f1":null,
   "retention":1.0109289617,
-  "skill_retention":1.015037594
+  "skill":1.015037594,
+  "skill_lo":0.9634969407,
+  "skill_hi":1.0692307692,
+  "boot_dropped":0
  },
  {
   "model":"qwen3.5-4b",
@@ -387,7 +474,10 @@
   "n":200,
   "macro_f1":null,
   "retention":0.5683060109,
-  "skill_retention":0.4060150376
+  "skill":0.4060150376,
+  "skill_lo":0.3037037037,
+  "skill_hi":0.5039385827,
+  "boot_dropped":0
  },
  {
   "model":"qwen3.5-4b",
@@ -400,7 +490,10 @@
   "n":200,
   "macro_f1":null,
   "retention":1.0,
-  "skill_retention":1.0
+  "skill":1.0,
+  "skill_lo":1.0,
+  "skill_hi":1.0,
+  "boot_dropped":0
  },
  {
   "model":"qwen3.5-4b",
@@ -413,7 +506,10 @@
   "n":200,
   "macro_f1":null,
   "retention":1.0,
-  "skill_retention":1.0
+  "skill":1.0,
+  "skill_lo":0.8333333333,
+  "skill_hi":1.2083881579,
+  "boot_dropped":0
  },
  {
   "model":"qwen3.5-4b",
@@ -426,7 +522,10 @@
   "n":200,
   "macro_f1":null,
   "retention":0.9775280899,
-  "skill_retention":0.9487179487
+  "skill":0.9487179487,
+  "skill_lo":0.7110416667,
+  "skill_hi":1.25,
+  "boot_dropped":0
  },
  {
   "model":"qwen3.5-4b",
@@ -439,7 +538,10 @@
   "n":200,
   "macro_f1":null,
   "retention":0.8314606742,
-  "skill_retention":0.6153846154
+  "skill":0.6153846154,
+  "skill_lo":0.3142857143,
+  "skill_hi":0.9459459459,
+  "boot_dropped":0
  },
  {
   "model":"qwen3.5-4b",
@@ -452,7 +554,10 @@
   "n":200,
   "macro_f1":null,
   "retention":0.6292134831,
-  "skill_retention":0.1538461538
+  "skill":0.1538461538,
+  "skill_lo":-0.1667682927,
+  "skill_hi":0.5,
+  "boot_dropped":0
  },
  {
   "model":"qwen3.5-4b",
@@ -465,7 +570,10 @@
   "n":200,
   "macro_f1":0.6443833944,
   "retention":1.0,
-  "skill_retention":1.0
+  "skill":1.0,
+  "skill_lo":1.0,
+  "skill_hi":1.0,
+  "boot_dropped":0
  },
  {
   "model":"qwen3.5-4b",
@@ -478,7 +586,10 @@
   "n":200,
   "macro_f1":0.6508448541,
   "retention":1.007518797,
-  "skill_retention":1.0150753769
+  "skill":1.0150753769,
+  "skill_lo":1.0,
+  "skill_hi":1.0532544379,
+  "boot_dropped":0
  },
  {
   "model":"qwen3.5-4b",
@@ -491,7 +602,10 @@
   "n":200,
   "macro_f1":0.6679500177,
   "retention":1.015037594,
-  "skill_retention":1.0301507538
+  "skill":1.0301507538,
+  "skill_lo":0.9197860963,
+  "skill_hi":1.1604278075,
+  "boot_dropped":0
  },
  {
   "model":"qwen3.5-4b",
@@ -504,7 +618,10 @@
   "n":200,
   "macro_f1":0.6503084195,
   "retention":1.0,
-  "skill_retention":1.0
+  "skill":1.0,
+  "skill_lo":0.8877005348,
+  "skill_hi":1.1265060241,
+  "boot_dropped":0
  },
  {
   "model":"qwen3.5-4b",
@@ -517,7 +634,10 @@
   "n":200,
   "macro_f1":0.4510723421,
   "retention":0.6766917293,
-  "skill_retention":0.351758794
+  "skill":0.351758794,
+  "skill_lo":0.1627493663,
+  "skill_hi":0.5796351606,
+  "boot_dropped":0
  },
  {
   "model":"qwen3.5-4b",
@@ -530,7 +650,10 @@
   "n":200,
   "macro_f1":0.5655140081,
   "retention":1.0,
-  "skill_retention":1.0
+  "skill":1.0,
+  "skill_lo":1.0,
+  "skill_hi":1.0,
+  "boot_dropped":0
  },
  {
   "model":"qwen3.5-4b",
@@ -543,7 +666,10 @@
   "n":200,
   "macro_f1":0.5613405038,
   "retention":0.9913043478,
-  "skill_retention":0.9793103448
+  "skill":0.9793103448,
+  "skill_lo":0.8874929511,
+  "skill_hi":1.0779220779,
+  "boot_dropped":0
  },
  {
   "model":"qwen3.5-4b",
@@ -556,7 +682,10 @@
   "n":200,
   "macro_f1":0.5835668442,
   "retention":1.0260869565,
-  "skill_retention":1.0620689655
+  "skill":1.0620689655,
+  "skill_lo":0.8488761857,
+  "skill_hi":1.3559742957,
+  "boot_dropped":0
  },
  {
   "model":"qwen3.5-4b",
@@ -569,7 +698,10 @@
   "n":200,
   "macro_f1":0.5647243362,
   "retention":0.9826086957,
-  "skill_retention":0.9586206897
+  "skill":0.9586206897,
+  "skill_lo":0.7131754961,
+  "skill_hi":1.2752293578,
+  "boot_dropped":0
  },
  {
   "model":"qwen3.5-4b",
@@ -582,7 +714,10 @@
   "n":200,
   "macro_f1":0.3260428202,
   "retention":0.6260869565,
-  "skill_retention":0.1103448276
+  "skill":0.1103448276,
+  "skill_lo":-0.1470588235,
+  "skill_hi":0.4,
+  "boot_dropped":0
  },
  {
   "model":"qwen3.5-4b",
@@ -595,7 +730,10 @@
   "n":200,
   "macro_f1":0.5849560514,
   "retention":1.0,
-  "skill_retention":1.0
+  "skill":1.0,
+  "skill_lo":1.0,
+  "skill_hi":1.0,
+  "boot_dropped":0
  },
  {
   "model":"qwen3.5-4b",
@@ -608,7 +746,10 @@
   "n":200,
   "macro_f1":0.5802688879,
   "retention":0.9914529915,
-  "skill_retention":0.9801324503
+  "skill":0.9801324503,
+  "skill_lo":0.8615384615,
+  "skill_hi":1.1132436005,
+  "boot_dropped":0
  },
  {
   "model":"qwen3.5-4b",
@@ -621,7 +762,10 @@
   "n":200,
   "macro_f1":0.5120811154,
   "retention":0.8888888889,
-  "skill_retention":0.7417218543
+  "skill":0.7417218543,
+  "skill_lo":0.5413743066,
+  "skill_hi":0.9549359009,
+  "boot_dropped":0
  },
  {
   "model":"qwen3.5-4b",
@@ -634,7 +778,10 @@
   "n":200,
   "macro_f1":0.4252003352,
   "retention":0.7863247863,
-  "skill_retention":0.5033112583
+  "skill":0.5033112583,
+  "skill_lo":0.2445761652,
+  "skill_hi":0.8264685772,
+  "boot_dropped":0
  },
  {
   "model":"qwen3.5-4b",
@@ -647,6 +794,9 @@
   "n":200,
   "macro_f1":0.3047435252,
   "retention":0.6153846154,
-  "skill_retention":0.1059602649
+  "skill":0.1059602649,
+  "skill_lo":-0.1650485437,
+  "skill_hi":0.3841864098,
+  "boot_dropped":0
  }
 ]
