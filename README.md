@@ -34,7 +34,7 @@ Most quantization benchmarks only measure English. This one asks:
   faster than at Q8_0 and use about a third less memory, with no measurable
   quality loss.
 - **Yoruba seems to break first.** At 3-bit compression (Q3_K_M), English keeps
-  nearly all its reading skill, while Yoruba loses about half. The evidence is
+  nearly all its reading skill, while Yoruba loses 40–60% of it. The evidence is
   suggestive, not conclusive; a larger test would settle it.
 - **The bigger problem comes before compression.** Both models answer about 9 in
   10 English reading questions correctly, but fewer than half of the same
@@ -49,7 +49,7 @@ Most quantization benchmarks only measure English. This one asks:
 
 ### Reading comprehension: English vs. Yoruba
 
-**In both models, Yoruba loses roughly half its skill at Q3_K_M, while English
+**In both models, Yoruba loses 40–60% of its skill at Q3_K_M, while English
 loses a little (Gemma) or nothing (Qwen).** Q2_K badly damages both models,
 and Gemma collapses into guessing.
 With 200 questions per language, the difference is suggestive rather than
@@ -337,7 +337,7 @@ sh scripts/run_all.sh           # evals, quantize, quality, speed, token tax, re
 - **English-only instructions.** The instructions are in English, so the Yoruba
   tasks are partly cross-lingual. Some of the English–Yoruba gap may come from
   the setup rather than from Yoruba reading ability.
-- **Sample size.** 200 items per task-language set. Only the Q2_K drops and
+- **Sample size.** 200 items per task-language set. Only most Q2_K drops and
   Gemma's Q3_K_M English drop survive correction for multiple tests
   ([Statistics](#statistics)).
 - **Reference.** Q8_0 is the reference, not BF16.
