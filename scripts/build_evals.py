@@ -35,27 +35,27 @@ def belebele(langs=("eng_Latn", "yor_Latn")):
     sets = {lang: load("facebook/belebele", lang)["test"] for lang in langs}
     n = len(sets[langs[0]])
     idx = sorted(random.Random(SEED).sample(range(n), N_ITEMS))
-    out = []
-    for lang, ds in sets.items():
-        for i in idx:
-            row = ds[i]
-            options = "\n".join(f"{L}. {row[f'mc_answer{k + 1}']}" for k, L in enumerate(LETTERS))
-            prompt = (
-                "Read the passage and answer the question.\n\n"
-                f"Passage:\n{row['flores_passage']}\n\n"
-                f"Question: {row['question']}\n\n"
-                f"{options}\n\n"
-                "Answer with only the letter of the correct option (A, B, C, or D)."
-            )
-            out.append({
-                "id": f"belebele-{lang[:3]}-{i}",
-                "task": "belebele",
-                "lang": lang[:3],
-                "prompt": prompt,
-                "choices": LETTERS,
-                "answer": LETTERS[int(row["correct_answer_num"]) - 1],
-            })
-    return out
+    return [belebele_item(ds[i], lang, i) for lang, ds in sets.items() for i in idx]
+
+
+def belebele_item(row, lang, i):
+    """One Belebele row as an eval item (shared with build_confirm.py so both use the same prompt)."""
+    options = "\n".join(f"{L}. {row[f'mc_answer{k + 1}']}" for k, L in enumerate(LETTERS))
+    prompt = (
+        "Read the passage and answer the question.\n\n"
+        f"Passage:\n{row['flores_passage']}\n\n"
+        f"Question: {row['question']}\n\n"
+        f"{options}\n\n"
+        "Answer with only the letter of the correct option (A, B, C, or D)."
+    )
+    return {
+        "id": f"belebele-{lang[:3]}-{i}",
+        "task": "belebele",
+        "lang": lang[:3],
+        "prompt": prompt,
+        "choices": LETTERS,
+        "answer": LETTERS[int(row["correct_answer_num"]) - 1],
+    }
 
 
 def balanced_sample(rows, label_of, rng):
