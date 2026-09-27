@@ -33,9 +33,11 @@ Most quantization benchmarks only measure English. This one asks:
 - **Q4_K_M is the sweet spot for English and Pidgin.** Replies come about 1.5×
   faster than at Q8_0 and use about a third less memory, with no measurable
   quality loss.
-- **Yoruba seems to break first.** At 3-bit compression (Q3_K_M), English keeps
-  nearly all its reading skill, while Yoruba loses 40–60% of it. The evidence is
-  suggestive, not conclusive; a larger test would settle it.
+- **Yoruba breaks first.** At 3-bit compression (Q3_K_M), Yoruba keeps about
+  60% of its reading skill, while English keeps 86% (Gemma) to 98% (Qwen). A
+  pre-registered test on 573 new questions confirmed this for both models: for
+  Qwen clearly, for Gemma only narrowly. The gap is smaller than the first run
+  suggested: 24–37 points, not 40–48.
 - **The bigger problem comes before compression.** Both models answer about 9 in
   10 English reading questions correctly, but fewer than half of the same
   questions in Yoruba.
@@ -96,6 +98,69 @@ Symbols mark drops vs. the same model's Q8_0 ([Methods](#statistics)):
 
 At Q2_K, below-chance scores come from the model repeating one letter. For
 example, Gemma answers "A" 77% of the time.
+
+### Confirmatory test
+
+**On 573 new questions per language, the pre-registered test supports the
+finding for both models: at Q3_K_M, Yoruba loses a larger share of its skill
+than English.** For Qwen the result is clear. For Gemma it passes the decision
+rule only narrowly.
+
+- **Pre-registration:** the hypothesis, test, decision rule and analysis code
+  were committed in [`PREREG.md`](PREREG.md), commit
+  [`d342162`](https://github.com/sforslime/quant-bench/commit/d34216299a40cbdc9419e072022a484456fa4c76),
+  before any model was run on these questions.
+- **Questions:** the 573 Belebele questions not used above, in either language.
+- **Rest of the setup:** unchanged from the first run (models, quant files,
+  prompts and settings).
+
+![Yoruba minus English skill kept at Q3_K_M and Q4_K_M, with 95% CIs](results/confirm/gap.png)
+
+**Primary test, at Q3_K_M.** Gap = Yoruba's skill kept minus English's
+(negative = Yoruba lost more). The p-values are one-sided, Holm-adjusted across
+the two models. The rule: supported if the adjusted p < 0.05.
+
+| | Skill kept, English | Skill kept, Yoruba | Gap (95% CI) | Holm p | Result |
+|---|---|---|---|---|---|
+| Gemma 4 E4B | 86% | 62% | −24 pts (−47 to +3) | 0.037 | **supported** (narrowly) |
+| Qwen 3.5 4B | 98% | 61% | −37 pts (−56 to −17) | 0.001 | **supported** |
+
+- **Gemma passes the one-sided test, but its two-sided 95% interval still
+  reaches +3.** A one-sided test at 0.05 corresponds to a 90% interval, so both
+  statements hold. Gemma's result is at the edge; Qwen's is not.
+- **The gaps are smaller than in the first run** (−24 vs. −48 for Gemma, −37
+  vs. −40 for Qwen). The first run's estimate was picked out because it looked
+  large, so some shrinkage was expected.
+- **At Q4_K_M (exploratory, not part of the test):** Yoruba again kept less
+  than English, by −15 points for Gemma and −9 for Qwen. Neither interval
+  excludes zero.
+
+**Accuracy on the new questions:**
+
+| Accuracy | Gemma, English | Gemma, Yoruba | Qwen, English | Qwen, Yoruba |
+|---|---|---|---|---|
+| Q8_0 | 91.6% | 40.1% | 89.4% | 42.9% |
+| Q4_K_M | 90.1 | 37.5 | 87.3 | 40.7 |
+| Q3_K_M | 82.4 | 34.4 | 88.1 | 36.0 |
+
+**A correction to the first run.** Belebele's English and Yoruba files do not
+list the questions in the same row order: only the first 178 rows line up.
+
+- **In the first run:** languages were matched by row number, so only 42 of the
+  200 English/Yoruba pairs were the same question.
+- **Unaffected:** each language's accuracy, skill kept and paired quant
+  comparisons.
+- **Affected:** the claim that both languages used the *same* questions. Also
+  the "paired" Yoruba-minus-English intervals (in effect they treated the two
+  languages as independent samples) and the token-tax passage comparison.
+- **Kept as is:** the results above are left unchanged as the pilot.
+- **How the confirmatory test handles it:** it pairs questions by Belebele's
+  own question key.
+
+Full tables are in [`results/confirm/summary.md`](results/confirm/summary.md).
+To rebuild them from the committed per-item results, run
+`python scripts/confirm_report.py`. To re-run the test from scratch, run
+`python scripts/build_confirm.py` then `python scripts/bench_confirm.py`.
 
 ### Sentiment: English, Pidgin, Yoruba
 
@@ -353,9 +418,8 @@ sh scripts/run_all.sh           # evals, quantize, quality, speed, token tax, re
 
 ## Next steps
 
-- Re-run Belebele on **all 900 questions** at Q8_0, Q4_K_M and Q3_K_M. That is
-  4.5× the data, enough to confirm or reject the Yoruba-vs-English gap with a
-  pre-registered test.
+- ~~Confirm the Yoruba-vs-English gap with a pre-registered test.~~ Done; see
+  [Confirmatory test](#confirmatory-test).
 - Add a **Yoruba-instructions** variant to separate reading ability from the
   cross-lingual setup.
 - Compare against **importance-matrix quants** and a **BF16** reference.

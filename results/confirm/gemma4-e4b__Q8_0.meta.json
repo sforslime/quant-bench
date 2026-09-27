@@ -1,0 +1,15 @@
+{
+  "model": "gemma4-e4b",
+  "quant": "Q8_0",
+  "file": "google_gemma-4-E4B-it-Q8_0.gguf",
+  "file_gb": 8.031,
+  "n_items": 1146,
+  "wall_seconds_last_session": 1054.4,
+  "resumed": false,
+  "ctx_total": 16384,
+  "gpu_model_mib": 7644.1,
+  "cpu_mapped_mib": 3536.0,
+  "kv_mib": 416.0,
+  "compute_mib": 194.33,
+  "gpu_total_mib": 8254.43
+}
