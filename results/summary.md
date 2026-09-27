@@ -66,7 +66,7 @@ Resamples the item IDs 2000 times, using the same items for the quant and Q8_0. 
 
 ## Yoruba minus English skill kept (Belebele), paired-bootstrap 95% CI
 
-The same resampled question numbers are used for both languages. Negative = Yoruba lost a larger share of its skill. *P(Yoruba worse)* is the share of resamples where the gap is below 0.
+Pilot only: languages were matched by row number, which pairs the same question only 42 of 200 times, so these intervals are not truly paired and are unreliable. The corrected, pre-registered result is in [`results/confirm/summary.md`](confirm/summary.md). Negative = Yoruba lost a larger share of its skill. *P(Yoruba worse)* is the share of resamples where the gap is below 0.
 
 | model | quant | gap | 95% CI | P(Yoruba worse) |
 |---|---|---|---|---|
@@ -134,7 +134,9 @@ The same resampled question numbers are used for both languages. Negative = Yoru
 | qwen3.5-4b | Q3_K_M | sentiment | yor | 46.0% | 38.5%–53.0% | 78.6% | 0.425 |
 | qwen3.5-4b | Q2_K | sentiment | yor | 36.0% | 29.0%–42.5% | 61.5% | 0.305 |
 
-## Token tax (Belebele parallel passages, each model's own tokenizer)
+## Token tax: superseded pilot count (passages not correctly paired)
+
+The pilot matched English and Yoruba by row number, so most of these "pairs" are different passages. The corrected counts, on 421 correctly paired passages, are in [`results/confirm/token_tax.json`](confirm/token_tax.json): Yoruba ÷ English = 2.41× (Gemma) and 2.64× (Qwen) for passages, 1.92× and 2.07× for the full prompt.
 
 Passage-only: each unique passage pair counted once, special tokens excluded. Full prompt: the whole request as sent, including the English instructions and chat template, averaged over the 200 items.
 

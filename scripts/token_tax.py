@@ -12,7 +12,9 @@ pilot "pairs" are different passages. --confirm uses data/confirm.jsonl, paired
 by its "pair" field (the dataset's own question key), and is the correct
 comparison.
 
-Writes results/token_tax.json (pilot) or results/confirm/token_tax.json (--confirm).
+Writes results/token_tax.json (pilot) or results/confirm/token_tax.json (--confirm;
+also adds full-prompt counts from results/confirm/<model>__Q8_0.jsonl, so run it
+after bench_confirm.py).
 Usage: python scripts/token_tax.py [--confirm]
 """
 import argparse
@@ -69,6 +71,17 @@ for model in MODELS:
         "eng_chars_mean": sum(map(len, pairs)) / len(pairs),
         "yor_chars_mean": sum(map(len, pairs.values())) / len(pairs),
     }
+    if args.confirm:
+        # Full prompt (English instructions + chat template included), from the confirmatory Q8_0 run,
+        # the same way report.py computes it for the pilot.
+        rows = [json.loads(line) for line in (out_dir / f"{model}__{REFERENCE_QUANT}.jsonl").open()]
+        prompt = {lang: [r["prompt_tokens"] for r in rows if r["lang"] == lang] for lang in ("eng", "yor")}
+        out[model].update({
+            "n_prompts_per_lang": len(prompt["eng"]),
+            "eng_prompt_tokens_mean": sum(prompt["eng"]) / len(prompt["eng"]),
+            "yor_prompt_tokens_mean": sum(prompt["yor"]) / len(prompt["yor"]),
+            "prompt_ratio": sum(prompt["yor"]) / sum(prompt["eng"]),
+        })
     print(model, out[model], flush=True)
 
 (out_dir / "token_tax.json").write_text(json.dumps(out, indent=2))

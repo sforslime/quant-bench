@@ -400,8 +400,9 @@ reported.
   - `results/speed.jsonl` holds the raw llama-bench numbers.
   - `results/confirm/<model>__<quant>.jsonl` has the confirmatory run, in the
     same format plus `pair` (the shared question number).
-  - `results/confirm/token_tax.json` holds the corrected tokenizer counts;
-    `results/token_tax.json` holds the superseded pilot counts.
+  - `results/confirm/token_tax.json` holds the corrected tokenizer counts,
+    for both the passages and the full prompts; `results/token_tax.json` holds
+    the superseded pilot counts.
 - **Re-running the analysis needs no models:** `python scripts/report.py`
   (pilot) and `python scripts/confirm_report.py` (confirmatory test) regenerate
   every table and chart from the committed files.

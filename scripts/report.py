@@ -311,7 +311,8 @@ def fmt_pct(x):
 
 
 def token_tax(df):
-    """Belebele only (the one parallel set). Passage-only counts come from scripts/token_tax.py;
+    """Pilot token tax (superseded: the pilot's English/Yoruba rows are mostly not translations of each
+    other; see results/confirm/token_tax.json). Passage-only counts come from scripts/token_tax.py;
     full-prompt counts (English instructions + chat template included) come from the quality runs."""
     path = RESULTS_DIR / "token_tax.json"
     passages = json.loads(path.read_text()) if path.exists() else {}
@@ -350,7 +351,9 @@ def write_summary(df, t, sk, gaps, metas, s):
         cells = [f"{100 * r.skill:.0f}% ({ci_range(100 * r.skill_lo, 100 * r.skill_hi)})" for r in g.sort_values("qi").itertuples()]
         lines.append(f"| {model} | {task} | {lang} | " + " | ".join(cells) + " |")
     lines += ["", "## Yoruba minus English skill kept (Belebele), paired-bootstrap 95% CI", "",
-              "The same resampled question numbers are used for both languages. Negative = Yoruba lost a larger share of its skill. "
+              "Pilot only: languages were matched by row number, which pairs the same question only 42 of 200 times, "
+              "so these intervals are not truly paired and are unreliable. The corrected, pre-registered result is in "
+              "[`results/confirm/summary.md`](confirm/summary.md). Negative = Yoruba lost a larger share of its skill. "
               "*P(Yoruba worse)* is the share of resamples where the gap is below 0.", "",
               "| model | quant | gap | 95% CI | P(Yoruba worse) |", "|---|---|---|---|---|"]
     for r in gaps.itertuples():
@@ -361,7 +364,11 @@ def write_summary(df, t, sk, gaps, metas, s):
         f1 = "" if r.macro_f1 is None or pd.isna(r.macro_f1) else f"{r.macro_f1:.3f}"
         lines.append(f"| {r.model} | {r.quant} | {r.task} | {r.lang} | {fmt_pct(r.acc)} | {fmt_pct(r.ci_lo)}–{fmt_pct(r.ci_hi)} | {fmt_pct(r.retention)} | {f1} |")
     tok = token_tax(df)
-    lines += ["", "## Token tax (Belebele parallel passages, each model's own tokenizer)", "",
+    lines += ["", "## Token tax: superseded pilot count (passages not correctly paired)", "",
+              "The pilot matched English and Yoruba by row number, so most of these \"pairs\" are different passages. "
+              "The corrected counts, on 421 correctly paired passages, are in "
+              "[`results/confirm/token_tax.json`](confirm/token_tax.json): Yoruba ÷ English = 2.41× (Gemma) and 2.64× (Qwen) "
+              "for passages, 1.92× and 2.07× for the full prompt.", "",
               "Passage-only: each unique passage pair counted once, special tokens excluded. "
               "Full prompt: the whole request as sent, including the English instructions and chat template, averaged over the 200 items.", "",
               "| model | passages | English passage tokens | Yoruba passage tokens | Yoruba ÷ English (passages) | Yoruba ÷ English (full prompt) |",
