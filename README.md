@@ -35,14 +35,14 @@ Most quantization benchmarks only measure English. This one asks:
   quality loss.
 - **Yoruba breaks first.** At 3-bit compression (Q3_K_M), Yoruba keeps about
   60% of its reading skill, while English keeps 86% (Gemma) to 98% (Qwen). A
-  pre-registered test on 573 new questions confirmed this for both models: for
+  pre-registered test on 573 new questions supported this for both models: for
   Qwen clearly, for Gemma only narrowly. The gap is smaller than the first run
   suggested: 24–37 points, not 40–48.
 - **The bigger problem comes before compression.** Both models answer about 9 in
   10 English reading questions correctly, but fewer than half of the same
   questions in Yoruba.
-- **Yoruba costs more than twice as many tokens** as English for the same text,
-  so it is slower to process and fills the model's context faster.
+- **Yoruba costs 2.4–2.6 times as many tokens** as English for the same
+  passage, so it is slower to process and fills the model's context faster.
 - **Don't go below Q4_K_M on a Mac.** Q3_K_M is no faster and starts losing
   quality, especially in Yoruba. Q2_K badly damages both models; Gemma
   collapses into guessing.
@@ -51,11 +51,11 @@ Most quantization benchmarks only measure English. This one asks:
 
 ### Reading comprehension: English vs. Yoruba
 
-**In both models, Yoruba loses 40–60% of its skill at Q3_K_M, while English
-loses a little (Gemma) or nothing (Qwen).** Q2_K badly damages both models,
-and Gemma collapses into guessing.
-With 200 questions per language, the difference is suggestive rather than
-proven ([Methods](#statistics)).
+**At Q3_K_M, Yoruba loses more of its reading skill than English in both
+models.** A pre-registered test on 573 new questions supports this
+([Confirmatory test](#confirmatory-test)). The tables below are the first,
+200-question run (the pilot). Its Yoruba-vs-English gap estimates are affected
+by a question-pairing error, described in the confirmatory section.
 
 ![Share of skill above chance kept at each quant, with 95% CIs](results/skill_kept.png)
 
@@ -71,9 +71,10 @@ starts close to chance, so a few questions swing the ratio a lot. Values below
 | Q2_K | −7% (−15 to +1) | −21% (−65 to +15) | 41% (30 to 50) | 15% (−17 to +50) |
 
 **How much more did Yoruba lose than English?** This is Yoruba's skill kept
-minus English's, in percentage points (negative = Yoruba lost more). It is the
-most direct test of the question, but it was added after seeing the data
-([Methods](#statistics)).
+minus English's, in percentage points (negative = Yoruba lost more). Pilot
+only. Because of the pairing error, these mostly compare different English and
+Yoruba questions, so the intervals are unreliable. See the
+[confirmatory test](#confirmatory-test) for the corrected result.
 
 | Gap (95% CI) | Q6_K | Q4_K_M | Q3_K_M | Q2_K |
 |---|---|---|---|---|
@@ -110,6 +111,8 @@ rule only narrowly.
   were committed in [`PREREG.md`](PREREG.md), commit
   [`d342162`](https://github.com/sforslime/quant-bench/commit/d34216299a40cbdc9419e072022a484456fa4c76),
   before any model was run on these questions.
+  The pre-registration commit was pushed to GitHub together with the results,
+  so its timestamp is self-reported.
 - **Questions:** the 573 Belebele questions not used above, in either language.
 - **Rest of the setup:** unchanged from the first run (models, quant files,
   prompts and settings).
@@ -212,15 +215,19 @@ and GPU memory is 31–34% lower.
 
 ### Token tax
 
-**The same passage costs more than twice as many tokens in Yoruba as in
+**The same passage costs 2.4–2.6 times as many tokens in Yoruba as in
 English**, even though the Yoruba text is slightly shorter.
 
 | | English passage | Yoruba passage | Yoruba ÷ English | Full prompt, Yoruba ÷ English |
 |---|---|---|---|---|
-| Gemma 4 E4B | 97.4 tokens | 229.4 tokens | **2.35×** | 1.88× |
-| Qwen 3.5 4B | 98.7 tokens | 253.9 tokens | **2.57×** | 2.02× |
+| Gemma 4 E4B | 97.1 tokens | 233.8 tokens | **2.41×** | 1.92× |
+| Qwen 3.5 4B | 98.2 tokens | 259.0 tokens | **2.64×** | 2.07× |
 
-The Yoruba passages average 456 characters, versus 477 for English, so the tax
+These figures come from 421 correctly paired passages in the confirmatory set.
+The pilot's figures (2.35× and 2.57×) were not correctly paired and are
+superseded.
+
+The Yoruba passages average 460 characters, versus 477 for English, so the tax
 comes from tokenization, not from longer text. The likely cause (not measured
 here) is that tone-marked characters (ẹ, ọ, ṣ, à, é, …) are rare in the
 tokenizers' training data, so each one splits into several tokens. The "full
@@ -239,7 +246,9 @@ ratio. See [Methods](#token-tax-method) for how this was measured.
   - Better still, don't rely on a 4B model for written Yoruba at all: ~44% on
     4-choice questions is not usable.
 
-Every number is in [`results/summary.md`](results/summary.md).
+Every number is in [`results/summary.md`](results/summary.md) and
+[`results/confirm/summary.md`](results/confirm/summary.md). The corrected token
+counts are in [`results/confirm/token_tax.json`](results/confirm/token_tax.json).
 
 ## Methods
 
@@ -267,11 +276,13 @@ Q8_0, so they slightly *understate* the total loss from full precision.
 
 ### Tasks and scoring
 
-200 items per task and language, with the same items for every config.
+200 items per task and language, with the same items for every config. The
+confirmatory Belebele test adds 573 more questions per language
+([Confirmatory test](#confirmatory-test)).
 
 | Task | Languages | Source |
 |---|---|---|
-| Reading comprehension, 4-choice | English, Yoruba (the *same* questions translated) | Belebele (`facebook/belebele`) |
+| Reading comprehension, 4-choice | English, Yoruba (pilot: 200 each, mostly different questions; confirmatory: 573 matched pairs) | Belebele (`facebook/belebele`) |
 | Sentiment (positive/negative/neutral), class-balanced | English, Nigerian Pidgin, Yoruba | TweetEval (`cardiffnlp/tweet_eval`); AfriSenti (`masakhane/afrisenti`) |
 
 - **Prompts:** instructions are always in English; only the passage or post
@@ -307,13 +318,14 @@ Q8_0, so they slightly *understate* the total loss from full precision.
   chance), using the same questions for both quants. Yoruba's intervals are
   wide because Q8_0 starts only 16.5 (Gemma) and 19.5 (Qwen) points above
   chance.
-- **Yoruba-minus-English gap:** Belebele's questions are parallel
-  translations, so each resample of question numbers is shared by both
-  languages, and the gap is computed within it.
+- **Yoruba-minus-English gap:** intended to be paired by question, but the
+  pilot matched languages by row number, which pairs the right question only 42
+  of 200 times. The confirmatory test pairs by Belebele's own question key.
   - **Caveat:** this analysis was added after seeing the results, and its 8
     intervals are not corrected for multiple comparisons.
   - Its Q3_K_M intervals exclude zero for both models, and Gemma's only barely.
-  - Treat it as a hypothesis to confirm, not a finding.
+  - It was a hypothesis to confirm, not a finding; see
+    [Confirmatory test](#confirmatory-test).
 
 ### Sanity check
 
@@ -357,9 +369,13 @@ reported.
 
 - **Tokenizer:** each model's own tokenizer, via llama-server's `/tokenize` on
   the Q8_0 file. The tokenizer is identical across quants.
-- **Text:** the **182 unique parallel Belebele passages** in the eval set.
+- **Text:** the **421 unique Belebele passages** in the confirmatory set,
+  paired by Belebele's own question key (`scripts/token_tax.py --confirm`).
   Only the passages are counted, with special tokens excluded
   ([`scripts/token_tax.py`](scripts/token_tax.py)).
+- **Pilot figures superseded:** the first run's count, over 182 pilot passages
+  in `results/token_tax.json`, matched the languages by row number, so most of
+  its pairs were not translations of each other.
 - **Sentiment excluded:** the sentiment sets are different tweets in each
   language, not translations, so they can't be compared this way.
 
@@ -370,14 +386,25 @@ reported.
   `data/evals.jsonl`:
   `3594026aa65ecfc5ebd980ae275019e898cc4dd59005d40c7c63fcd0d76a4786`.
   Rebuilding reproduces this hash exactly.
+- **Confirmatory set:** built by `scripts/build_confirm.py` from the same
+  pinned Belebele revision, with no sampling.
+  - `data/confirm.jsonl` holds 573 × 2 items. SHA-256:
+    `9f58ea6abf742db28441ed7358a6b889b2fc671d0f871655c76e6099fc68f27b`
+    (as recorded in [`PREREG.md`](PREREG.md)).
+  - It isn't committed, because it contains dataset text. Rebuilding
+    reproduces it byte for byte.
 - **Per-item results are committed:**
   - `results/quality/<model>__<quant>.jsonl` has one line per question: item
     ID, gold label, prediction, correct or not, prompt tokens and latency.
   - `<model>__<quant>.meta.json` holds that config's memory and timing.
   - `results/speed.jsonl` holds the raw llama-bench numbers.
-  - `results/token_tax.json` holds the tokenizer counts.
+  - `results/confirm/<model>__<quant>.jsonl` has the confirmatory run, in the
+    same format plus `pair` (the shared question number).
+  - `results/confirm/token_tax.json` holds the corrected tokenizer counts;
+    `results/token_tax.json` holds the superseded pilot counts.
 - **Re-running the analysis needs no models:** `python scripts/report.py`
-  regenerates every table and chart from the committed files.
+  (pilot) and `python scripts/confirm_report.py` (confirmatory test) regenerate
+  every table and chart from the committed files.
 
 ### Reproduce from scratch
 
@@ -394,22 +421,27 @@ sh scripts/run_all.sh           # evals, quantize, quality, speed, token tax, re
 | `scripts/quantize.py` | Q8_0 → Q6_K / Q4_K_M / Q3_K_M / Q2_K |
 | `scripts/bench_quality.py` | runs every item through every config, records GPU memory |
 | `scripts/bench_speed.py` | llama-bench sweep |
-| `scripts/token_tax.py` | English vs. Yoruba token counts on the parallel passages |
+| `scripts/token_tax.py` | English vs. Yoruba token counts (`--confirm`: on the correctly paired passages) |
 | `scripts/report.py` | tables (`results/summary.md`) and charts (`results/*.png`) |
+| `scripts/build_confirm.py` | builds the held-out confirmatory set in `data/confirm.jsonl` |
+| `scripts/prereg_power.py` | expected CI width and power of the confirmatory test, from the pilot |
+| `scripts/bench_confirm.py` | runs the confirmatory set at Q8_0 / Q4_K_M / Q3_K_M (resumable) |
+| `scripts/confirm_report.py` | pre-registered analysis (`results/confirm/summary.md`, `gap.png`) |
 
 ## Limitations
 
 - **English-only instructions.** The instructions are in English, so the Yoruba
   tasks are partly cross-lingual. Some of the English–Yoruba gap may come from
   the setup rather than from Yoruba reading ability.
-- **Sample size.** 200 items per task-language set. Only most Q2_K drops and
-  Gemma's Q3_K_M English drop survive correction for multiple tests
-  ([Statistics](#statistics)).
+- **Sample size.** The pilot used 200 items per set; only Gemma's Q3_K_M
+  English drop and all but one Q2_K drop survive multiple-test correction. The
+  main Yoruba result rests on the 573-question confirmatory test, where Gemma
+  passes only narrowly.
 - **Reference.** Q8_0 is the reference, not BF16.
 - **Model coverage.** Two models, both ~4B. Bigger models may degrade differently.
 - **Sentiment labels.** AfriSenti labels come from tweets and are noisy.
 - **Answer balance.** Belebele's correct answers are not perfectly balanced
-  across A–D in this sample (C is most common, at 31%).
+  across A–D in the pilot sample (C is most common, at 31%).
 - **Parallel slots.** The quality runs used 4 parallel server slots. This
   barely affects results at temperature 0, but is not bit-for-bit identical to
   single-request runs.

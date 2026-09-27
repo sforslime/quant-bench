@@ -1,0 +1,18 @@
+{
+  "gemma4-e4b": {
+    "n_passages": 421,
+    "eng_tokens_mean": 97.10451306413302,
+    "yor_tokens_mean": 233.7790973871734,
+    "ratio_of_totals": 2.407499816540691,
+    "eng_chars_mean": 476.8669833729216,
+    "yor_chars_mean": 460.30878859857484
+  },
+  "qwen3.5-4b": {
+    "n_passages": 421,
+    "eng_tokens_mean": 98.21615201900238,
+    "yor_tokens_mean": 259.0475059382423,
+    "ratio_of_totals": 2.6375244866864977,
+    "eng_chars_mean": 476.8669833729216,
+    "yor_chars_mean": 460.30878859857484
+  }
+}
